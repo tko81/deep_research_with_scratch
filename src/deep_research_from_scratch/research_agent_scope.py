@@ -12,7 +12,7 @@ whether sufficient context exists to proceed with research.
 from datetime import datetime
 from typing_extensions import Literal
 
-from langchain.chat_models import init_chat_model
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, get_buffer_string
 from langgraph.graph import StateGraph, START, END
 from langgraph.types import Command
@@ -29,7 +29,7 @@ def get_today_str() -> str:
 # ===== CONFIGURATION =====
 
 # Initialize model
-model = init_chat_model(model="openai:gpt-4.1", temperature=0.0)
+model = ChatOpenAI(model="gpt-5-nano", temperature=0)
 
 # ===== WORKFLOW NODES =====
 
