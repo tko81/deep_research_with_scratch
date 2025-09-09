@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 from typing_extensions import Annotated, List, Literal
 
-from langchain_openai import ChatOpenAI
+from langchain.chat_models import ChatOpenAI 
 from langchain_core.messages import HumanMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool, InjectedToolArg
@@ -39,7 +39,7 @@ def get_current_dir() -> Path:
 
 # ===== CONFIGURATION =====
 
-summarization_model = ChatOpenAI(model="gpt-5-mini")
+summarization_model = ChatOpenAI(model="gpt-5-nano", temperature=0)
 tavily_client = TavilyClient()
 
 # ===== SEARCH FUNCTIONS =====

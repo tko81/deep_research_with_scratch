@@ -22,6 +22,8 @@ class ResearcherState(TypedDict):
     tool calls, the research topic being investigated, compressed findings,
     and raw research notes for detailed analysis.
     """
+    # BaseMessage 是所有消息类型的基类
+    # Sequence：是抽象基类（ABC），定义了序列的接口规范，支持：list, tuple, str 等
     researcher_messages: Annotated[Sequence[BaseMessage], add_messages]
     tool_call_iterations: int
     research_topic: str
