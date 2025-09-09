@@ -9,11 +9,11 @@ from pathlib import Path
 from datetime import datetime
 from typing_extensions import Annotated, List, Literal
 
-from langchain.chat_models import init_chat_model 
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool, InjectedToolArg
-from tavily import TavilyClient
+from tavily import TavilyClient, AsyncTavilyClient
 
 from deep_research_from_scratch.state_research import Summary
 from deep_research_from_scratch.prompts import summarize_webpage_prompt
@@ -39,7 +39,7 @@ def get_current_dir() -> Path:
 
 # ===== CONFIGURATION =====
 
-summarization_model = init_chat_model(model="openai:gpt-4.1-mini")
+summarization_model = ChatOpenAI(model="gpt-5-mini")
 tavily_client = TavilyClient()
 
 # ===== SEARCH FUNCTIONS =====
@@ -235,4 +235,5 @@ def think_tool(reflection: str) -> str:
     Returns:
         Confirmation that reflection was recorded for decision-making
     """
+    # 函数本身很简单，只是确认记录了反思内容
     return f"Reflection recorded: {reflection}"
