@@ -10,7 +10,7 @@ from typing_extensions import Literal
 
 from langgraph.graph import StateGraph, START, END
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage, filter_messages
-from langchain.chat_models import init_chat_model
+from langchain_openai import ChatOpenAI
 
 from deep_research_from_scratch.state_research import ResearcherState, ResearcherOutputState
 from deep_research_from_scratch.utils import tavily_search, get_today_str, think_tool
@@ -23,10 +23,10 @@ tools = [tavily_search, think_tool]
 tools_by_name = {tool.name: tool for tool in tools}
 
 # Initialize models
-model = init_chat_model(model="anthropic:claude-sonnet-4-20250514")
+model = ChatOpenAI(model="anthropic:claude-sonnet-4-20250514")
 model_with_tools = model.bind_tools(tools)
-summarization_model = init_chat_model(model="openai:gpt-4.1-mini")
-compress_model = init_chat_model(model="openai:gpt-4.1", max_tokens=32000) 
+summarization_model = ChatOpenAI(model="openai:gpt-4.1-mini")
+compress_model = ChatOpenAI(model="openai:gpt-4.1", max_tokens=32000) 
 # model="anthropic:claude-sonnet-4-20250514", max_tokens=64000
 
 # ===== AGENT NODES =====
